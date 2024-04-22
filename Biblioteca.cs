@@ -57,13 +57,17 @@ namespace csharp_biblioteca
             return risultati;
         }
 
-        public List<Prestito> CercaPrestito(string cognome)
+        public List<Prestito> CercaPrestito(string cognome, string nome)
         {
             HashSet<Prestito> risultati = new HashSet<Prestito>();
             foreach(Prestito prestito in prestiti)
             {
-                if (prestito.Utente.Cognome.Equals(cognome, StringComparison.OrdinalIgnoreCase))
+                if (prestito.Utente.Cognome.Equals(cognome, StringComparison.OrdinalIgnoreCase) && prestito.Utente.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase))
                     risultati.Add(prestito);
+            }
+            if (risultati.Count == 0)
+            {
+                Console.WriteLine("Non ci sono prestiti a questo nome");
             }
             return risultati.ToList();
         }

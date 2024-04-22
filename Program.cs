@@ -33,7 +33,6 @@ class Program : Biblioteca
         biblioteca.AggiungiPrestiti(prestito);
 
         string scelta = "";
-        string tipoRicerca = "";
 
         while (scelta != "0")
         {
@@ -96,13 +95,15 @@ class Program : Biblioteca
             }
             else if (scelta == "2")
             {
+                Console.WriteLine("\nInserire il Nome: ");
+                string NomeDaCercare = Console.ReadLine();
                 Console.WriteLine("\nInserire il Cognome: ");
                 string CognomeDaCercare = Console.ReadLine();
 
-                List<Prestito> prestiti = biblioteca.CercaPrestito(CognomeDaCercare);
+                List<Prestito> prestiti = biblioteca.CercaPrestito(CognomeDaCercare, NomeDaCercare);
                 foreach(Prestito pres in prestiti)
                 {
-                    Console.WriteLine($"\n{CognomeDaCercare} ha in prestito questo titolo: {pres.Documento.Titolo} fino a {pres.DataFine}");
+                    Console.WriteLine($"\n{NomeDaCercare} {CognomeDaCercare} ha in prestito questo titolo: {pres.Documento.Titolo} fino a {pres.DataFine}");
                 }
             }
             else if (scelta == "0")
